@@ -5,3 +5,4 @@
 aws creds.txt
 /.coverage
 /.pytest_cache/
+*__pycache__/

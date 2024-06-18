@@ -1,7 +1,3 @@
-Certainly! Below is a professional documentation outline for the Task Management System backend. This documentation assumes you have a basic understanding of Docker, AWS ECS, and PostgreSQL. It provides detailed steps for setting up the backend locally and deploying it on AWS ECS.
-
----
-
 # Task Management System Backend Documentation
 
 ## Overview
@@ -97,6 +93,15 @@ The Task Management System backend is a Flask API application designed to manage
 6. **Access the Deployed API**
 
    - Once deployed, the backend API will be accessible via the ECS service endpoint.
+
+## Troubleshooting
+
+Run the flask application in development mode by running the following command:
+
+```commandline
+flask run --host="0.0.0.0"  
+```
+
 
 ## Conclusion
 
