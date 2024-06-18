@@ -1,3 +1,4 @@
+
 # Task Management System Backend Documentation
 
 ## Overview
@@ -16,6 +17,56 @@ The Task Management System backend is a Flask API application designed to manage
   - JWT tokens provide access and admin authorization checks.
 - **Health Check and Access Validation:**
   - Endpoint to check API server status and validate JWT token access.
+
+
+## Database Setup
+
+### RDS with PostgresSQL running on AWS
+
+- Using the AWS Management console, spinup a database with the PostgresSQL engine.
+- Note the credentials as they will be used in the .env or as environment variables in all our local and cloud deployments
+
+### Database Schema
+
+- The schema for the tables of Users, Tasks and Projects and maintained in the `models.py` file of the Python Flask application.
+- The tables are defined in classes with the `init` and other builtin methods to get and set information from the data tables.
+
+### Database Migration
+
+Flask-Migrate is a plugin to Flask API that provides database migration methods to create migration scripts , updgrade and rollback or downgrade the changes needed to be made on the data tables. This plugin is installed by running the following command.
+
+```bash
+pip install Flask-Migrate
+```
+
+Once the required changes are made to the database tables, run the `db init` command to initialize the migration. This prepares the folder structure where the migration scripts are stored.
+
+```bash
+flask db init
+```
+Now you are ready to generate the migration scripts with the `db migrate` command. The generated scripts are stored in the above created **migrations** folder.
+
+```bash
+flask db migrate -m "migration commit message"
+```
+Now you are ready to perform the database migration with the `upgrade` command.
+```bash
+flask db upgrade
+```
+If the desired outcome is not achieved, Flask-Migrate give the option of `downgrade` to rollback the changes with this command.
+```bash
+flask db downgrade
+```
+The migration scripts are version controlled by the library and can be checked in to the source controlled repository.  
+
+
+## Swagger UI 
+
+Swagger UI is Open API tool that can be used to visualize, test and interact with the API for understand and debugging our API application when setup right. This library is installed from the `pip` repository using this command.
+```bash
+pip install flask-swagger-ui
+```
+Use the Swagger Editor also provided by the Open API community to quickly build the UI. The config file can be downloaded in the `json` or `yaml` formats can be used to include the tool as a part of the application and source controlled as code. Once fully setup the UI is available at the http://localhost:5000/swagger endpoint.
 
 ## Local Setup
 
@@ -94,15 +145,7 @@ The Task Management System backend is a Flask API application designed to manage
 
    - Once deployed, the backend API will be accessible via the ECS service endpoint.
 
-## Troubleshooting
-
-Run the flask application in development mode by running the following command:
-
-```commandline
-flask run --host="0.0.0.0"  
-```
-
-
 ## Conclusion
 
 The Task Management System backend provides a robust API for managing projects, tasks, and users securely. By following these setup instructions, you can deploy and manage the backend both locally and on AWS ECS, ensuring scalability and reliability for your application.
+

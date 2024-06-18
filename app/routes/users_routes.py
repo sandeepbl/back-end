@@ -122,7 +122,7 @@ def delete_user(id):
     return jsonify({"message": f"Deleted user: {user.username}"}), 200
 
 
-@app.route("/users/<id>/", methods=["PUT"])  # Modify User
+@app.route("/users/<id>/", methods=["PUT"])  # Modify User. Admin access decorator applied
 @jwt_required()
 @admin_access_required
 def update_user(id):
